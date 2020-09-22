@@ -1,0 +1,16 @@
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\bin\Debug\Pizzeria Asporto Visual Studio.exe.config
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\bin\Debug\Pizzeria Asporto Visual Studio.exe
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\bin\Debug\Pizzeria Asporto Visual Studio.pdb
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria_Asporto_Visual_Studio.Properties.Resources.resources
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria Asporto Visual Studio.csproj.GenerateResource.cache
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria Asporto Visual Studio.csproj.CoreCompileInputs.cache
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria Asporto Visual Studio.exe
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria Asporto Visual Studio.pdb
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria_Asporto_Visual_Studio.Pizzeria.resources
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria Asporto Visual Studio.csprojAssemblyReference.cache
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria_Asporto_Visual_Studio.Benvenuto.resources
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria_Asporto_Visual_Studio.ordine.resources
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria_Asporto_Visual_Studio.Form4.resources
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria_Asporto_Visual_Studio.area.resources
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\WindowsFormsApplication1.nuovoordine.resources
+D:\Università\2° anno\Basi di dati\Progetto\Pizzeria Asporto Visual Studio\obj\Debug\Pizzeria_Asporto_Visual_Studio.Form7.resources

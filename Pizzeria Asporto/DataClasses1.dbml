@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PIZZERIA_ASPORTO" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-H6V05E3;Initial Catalog=PIZZERIA_ASPORTO;Integrated Security=True" SettingsObjectName="Pizzeria_Asporto_Visual_Studio.Properties.Settings" SettingsPropertyName="PIZZERIA_ASPORTOConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ALLERGENI" Member="ALLERGENI">
+    <Type Name="ALLERGENI">
+      <Column Name="Codice" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BEVERAGE" Member="BEVERAGE">
+    <Type Name="BEVERAGE">
+      <Column Name="IDBeverage" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Prezzo_di_vendita" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Association Name="PRODOTTI_BEVERAGE" Member="PRODOTTI" ThisKey="IDBeverage" OtherKey="ID_Prodotto" Type="PRODOTTI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CLIENTI" Member="CLIENTI">
+    <Type Name="CLIENTI">
+      <Column Name="Codice_cliente" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDtessera" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cellulare" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Via" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Civico" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="CAP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Citta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="TESSERE_CLIENTI" Member="TESSERE" ThisKey="IDtessera" OtherKey="IDtessera" Type="TESSERE" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DETTAGLI_ORDINI" Member="DETTAGLI_ORDINI">
+    <Type Name="DETTAGLI_ORDINI">
+      <Column Name="ID_Prodotto" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_Ordine" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Riga" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantita" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Costo_unitario" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Imponibile" Type="System.Double" DbType="Float NOT NULL" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Importo" Type="System.Double" DbType="Float NOT NULL" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Aliquota_IVA" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="ORDINI_FORNITORI_DETTAGLI_ORDINI" Member="ORDINI_FORNITORI" ThisKey="ID_Ordine,Data" OtherKey="ID_Ordine,Data" Type="ORDINI_FORNITORI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="PRODOTTI_DETTAGLI_ORDINI" Member="PRODOTTI" ThisKey="ID_Prodotto" OtherKey="ID_Prodotto" Type="PRODOTTI" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FARCITURE" Member="FARCITURE">
+    <Type Name="FARCITURE">
+      <Column Name="IDIngrediente" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Codice_pizza" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="PIZZE_FARCITURE" Member="PIZZE" ThisKey="Codice_pizza" OtherKey="CodiceListino" Type="PIZZE" IsForeignKey="true" />
+      <Association Name="PRODOTTI_FARCITURE" Member="PRODOTTI" ThisKey="IDIngrediente" OtherKey="ID_Prodotto" Type="PRODOTTI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DIPENDENTI" Member="DIPENDENTI">
+    <Type Name="DIPENDENTI">
+      <Column Name="IdDipendente" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Data_assunzione" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="CF" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono_fisso" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Cellulare" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Via" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Civico" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CAP" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Citta" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipologia" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Num_protoc_HACCP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_patente" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Tariffa_oraria" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FATTURE" Member="FATTURE">
+    <Type Name="FATTURE">
+      <Column Name="Numero" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Emissione" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Termine_di_pagamento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Pagato" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="IdFornitore" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FORMATI" Member="FORMATI">
+    <Type Name="FORMATI">
+      <Column Name="Codice" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Costo_margherita" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Costo_farcita" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FORNITORI" Member="FORNITORI">
+    <Type Name="FORNITORI">
+      <Column Name="IdFornitore" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Partita_IVA" Type="System.String" DbType="Char(11) NOT NULL" CanBeNull="false" />
+      <Column Name="Ragione_Sociale" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IBAN" Type="System.String" DbType="Char(27)" CanBeNull="true" />
+      <Column Name="Via" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Civico" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CAP" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Citta" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IMPASTI" Member="IMPASTI">
+    <Type Name="IMPASTI">
+      <Column Name="Codice" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Costo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.INGREDIENTI" Member="INGREDIENTI">
+    <Type Name="INGREDIENTI">
+      <Column Name="IDIngrediente" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Costo_aggiunta" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MATERIE_PRIME" Member="MATERIE_PRIME">
+    <Type Name="MATERIE_PRIME">
+      <Column Name="IDMateriaPrima" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MODIFICHE" Member="MODIFICHE">
+    <Type Name="MODIFICHE">
+      <Column Name="IDIngrediente" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDOrdine" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Numero_pizza_ordinata" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Eliminazione_Aggiunta" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDINI" Member="ORDINI">
+    <Type Name="ORDINI">
+      <Column Name="IDOrdine" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Ora" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="Numero_pizze_ordinate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Importo_ordine" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Totale" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Pagato" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipologia_pagamento" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CodCliente" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="IdCassiere" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="IdFattorino" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="Importo_consegna" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDINI_BEVANDE" Member="ORDINI_BEVANDE">
+    <Type Name="ORDINI_BEVANDE">
+      <Column Name="IDOrdine" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDBeverage" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Quantita" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDINI_FORNITORI" Member="ORDINI_FORNITORI">
+    <Type Name="ORDINI_FORNITORI">
+      <Column Name="ID_Ordine" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ImportoTotale" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IdFornitore" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Association Name="ORDINI_FORNITORI_DETTAGLI_ORDINI" Member="DETTAGLI_ORDINI" ThisKey="ID_Ordine,Data" OtherKey="ID_Ordine,Data" Type="DETTAGLI_ORDINI" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PIZZE" Member="PIZZE">
+    <Type Name="PIZZE">
+      <Column Name="CodiceListino" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Prezzo" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" />
+      <Association Name="PIZZE_FARCITURE" Member="FARCITURE" ThisKey="CodiceListino" OtherKey="Codice_pizza" Type="FARCITURE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PIZZE_ORDINATE" Member="PIZZE_ORDINATE">
+    <Type Name="PIZZE_ORDINATE">
+      <Column Name="Data" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDOrdine" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Numero" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Codice_listino_pizza" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Codice_formato" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Codice_impasto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantita" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Costo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRESENZA_ALLERGENI" Member="PRESENZA_ALLERGENI">
+    <Type Name="PRESENZA_ALLERGENI">
+      <Column Name="CodiceAllergene" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDMateriaPrima" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODOTTI" Member="PRODOTTI">
+    <Type Name="PRODOTTI">
+      <Column Name="ID_Prodotto" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="PRODOTTI_BEVERAGE" Member="BEVERAGE" ThisKey="ID_Prodotto" OtherKey="IDBeverage" Type="BEVERAGE" Cardinality="One" />
+      <Association Name="PRODOTTI_DETTAGLI_ORDINI" Member="DETTAGLI_ORDINI" ThisKey="ID_Prodotto" OtherKey="ID_Prodotto" Type="DETTAGLI_ORDINI" />
+      <Association Name="PRODOTTI_FARCITURE" Member="FARCITURE" ThisKey="ID_Prodotto" OtherKey="IDIngrediente" Type="FARCITURE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.REALIZZAZIONE_IMPASTI" Member="REALIZZAZIONE_IMPASTI">
+    <Type Name="REALIZZAZIONE_IMPASTI">
+      <Column Name="IDMateriaPrima" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CodiceImpasto" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TESSERE" Member="TESSERE">
+    <Type Name="TESSERE">
+      <Column Name="IDtessera" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Numero_pizze" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TESSERE_CLIENTI" Member="CLIENTI" ThisKey="IDtessera" OtherKey="IDtessera" Type="CLIENTI" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TURNI" Member="TURNI">
+    <Type Name="TURNI">
+      <Column Name="IdDipendente" Type="System.String" DbType="VarChar(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Ora_inizio" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="Ora_fine" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Consegne" Member="Consegne">
+    <Type Name="Consegne">
+      <Column Name="IDOrdine" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="OraConsegna" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="TotaleDaPagare" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IdFattorino" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="Destinatario" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Via" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Civico" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="CAP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Citta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ingredienti_pizze" Member="Ingredienti_pizze">
+    <Type Name="Ingredienti_pizze">
+      <Column Name="Codice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pizza" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Ingrediente" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pagamento" Member="Pagamento">
+    <Type Name="Pagamento">
+      <Column Name="IDtessera" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Numero_pizze_ordinate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Totale_ore" Member="Totale_ore">
+    <Type Name="Totale_ore">
+      <Column Name="IdDipendente" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Ore" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tariffa_oraria" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
